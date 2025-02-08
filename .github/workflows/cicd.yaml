@@ -42,3 +42,8 @@ jobs:
           tags: sahil9192/webapp:latest
           cache-from: type=registry,ref=sahil9192/webapp:buildcache
           cache-to: type=registry,ref=sahil9192/webapp:buildcache,mode=max
+
+      - name: Image Scan
+        run: trivy image sahil9192/webapp:latest > scan.txt
+      - name: Trivy Compilance
+        run: trivy image --compilance docker-cis sahil9192/webapp:latest > compilance.txt
