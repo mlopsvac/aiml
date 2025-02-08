@@ -1,4 +1,4 @@
-FROM python:3.9-slim
+FROM python:3.11-slim
 
 WORKDIR /app
 
@@ -8,20 +8,20 @@ RUN apt-get update && apt-get install -y --no-install-recommends libpq-dev && \
     /py/bin/pip install --upgrade pip
 
 # Copy dependencies
-COPY ./requirements.txt /requirements.txt
-RUN /py/bin/pip install --no-cache-dir -r /requirements.txt
+COPY requirements.txt .
+RUN pip install --no-cache-dir -r requirements.txt
 
 # Copy application code
-COPY ./app /app
+COPY . .
 
 # Set environment variables
 ENV PATH="/py/bin:$PATH"
 
 # Expose port
-EXPOSE 8000
+EXPOSE 8080
 
 # Set non-root user for security
 RUN adduser --disabled-password --no-create-home appuser
 USER appuser
 
-CMD ["python", "manage.py", "runserver", "0.0.0.0:8000"]
+CMD ["python", "app.py"]
