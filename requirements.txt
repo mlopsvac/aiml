@@ -2,4 +2,5 @@ numpy
 pandas
 mlflow
 scikit-learn
-psycopg2
+psycopg2-binary
+django
