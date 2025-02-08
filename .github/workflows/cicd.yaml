@@ -36,4 +36,4 @@ jobs:
         with:
           context: .
           push: true
-          tags: tanzeemrugrel/webapp:latest
+          tags: sahil9192/webapp:latest
