@@ -6,7 +6,7 @@ on:
 
 jobs:
   build_analyze_scan:
-    name:   Build
+    name: Build
     runs-on: ubuntu-latest  #[self-hosted]
     steps:
       - name: Checkout code
@@ -25,9 +25,8 @@ jobs:
       - name: Docker Build and Push
         run: |
           docker-compose -f docker-compose.yaml build
-          docker-tag webapp:latest sahil9192/webapp:latest
+          docker tag webapp:latest sahil9192/webapp:latest
           docker login -u ${{ secrets.DOCKER_USERNAME }} -p ${{ secrets.DOCKER_PASSWORD }}
           docker push sahil9192/webapp:latest
         env:
           DOCKER_CLI_ACI: 1
-      
